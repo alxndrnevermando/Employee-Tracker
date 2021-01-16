@@ -21,7 +21,7 @@ CREATE TABLE roles (
 CREATE TABLE employee (
   employeeID INT NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(30) NULL,
-  last_name DECIMAL NULL,
+  last_name VARCHAR(30) NULL,
   rolesID INT,
   PRIMARY KEY (employeeID),
   FOREIGN KEY (rolesID) REFERENCES roles(rolesID)
