@@ -25,7 +25,7 @@ function runSearch() {
   inquirer
     .prompt({
       name: "action",
-      type: "rawlist",
+      type: "list",
       message: "What would you like to do?",
       choices: [
         "View Departments",
@@ -68,4 +68,46 @@ function runSearch() {
           break;
       }
     });
+}
+
+function viewDep() {
+  var query = "SELECT * FROM department";
+  connection.query(query, function(err, res) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    else {
+      console.table(res)
+    }
+    runSearch();
+  });
+}
+
+function viewEmp() {
+  var query = "SELECT * FROM employee";
+  connection.query(query, function(err, res) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    else {
+      console.table(res)
+    }
+    runSearch();
+  });
+}
+
+function viewRol() {
+  var query = "SELECT * FROM roles";
+  connection.query(query, function(err, res) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    else {
+      console.table(res)
+    }
+    runSearch();
+  });
 }
