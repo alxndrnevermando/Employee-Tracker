@@ -16,46 +16,56 @@ var connection = mysql.createConnection({
   database: "employees_DB"
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) throw err;
   runSearch();
 });
 
 function runSearch() {
-    inquirer
-      .prompt({
-        name: "action",
-        type: "rawlist",
-        message: "What would you like to do?",
-        choices: [
-          "Find songs by artist",
-          "Find all artists who appear more than once",
-          "Find data within a specific range",
-          "Search for a specific song",
-          "Find artists with a top song and top album in the same year"
-        ]
-      })
-      .then(function(answer) {
-        switch (answer.action) {
-        case "Find songs by artist":
-          artistSearch();
+  inquirer
+    .prompt({
+      name: "action",
+      type: "rawlist",
+      message: "What would you like to do?",
+      choices: [
+        "View Departments",
+        "View Roles",
+        "View Employees",
+        "Add Departments",
+        "Add Roles",
+        "Add Employees",
+        "Update Employee Roles"
+      ]
+    })
+    .then(function (answer) {
+      switch (answer.action) {
+        case "View Departments":
+          viewDep();
           break;
-  
-        case "Find all artists who appear more than once":
-          multiSearch();
+
+        case "View Roles":
+          viewRol();
           break;
-  
-        case "Find data within a specific range":
-          rangeSearch();
+
+        case "View Employees":
+          viewEmp();
           break;
-  
-        case "Search for a specific song":
-          songSearch();
+
+        case "Add Departments":
+          addDep();
           break;
-  
-        case "Find artists with a top song and top album in the same year":
-          songAndAlbumSearch();
+
+        case "Add Roles":
+          addRol();
           break;
-        }
-      });
-  }
+
+        case "Add Employees":
+          addEmp();
+          break;
+
+        case "Update Employee Roles":
+          updateRole();
+          break;
+      }
+    });
+}
