@@ -72,7 +72,7 @@ function runSearch() {
 
 function viewDep() {
   var query = "SELECT * FROM department";
-  connection.query(query, function(err, res) {
+  connection.query(query, function (err, res) {
     if (err) {
       console.log(err);
       return;
@@ -86,7 +86,7 @@ function viewDep() {
 
 function viewEmp() {
   var query = "SELECT * FROM employee";
-  connection.query(query, function(err, res) {
+  connection.query(query, function (err, res) {
     if (err) {
       console.log(err);
       return;
@@ -100,7 +100,7 @@ function viewEmp() {
 
 function viewRol() {
   var query = "SELECT * FROM roles";
-  connection.query(query, function(err, res) {
+  connection.query(query, function (err, res) {
     if (err) {
       console.log(err);
       return;
@@ -110,4 +110,111 @@ function viewRol() {
     }
     runSearch();
   });
+}
+
+function addEmp() {
+
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "first_name",
+        message: "What is the employee's first name?"
+      },
+      {
+        type: "input",
+        name: "last_name",
+        message: "What is the employee's last name?"
+      },
+      {
+        type: "list",
+        name: "rolesID",
+        message: "What is the employee's role?",
+        choices: [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ])
+    .then(function (answer) {
+      var query = `INSERT INTO employee SET ?`
+      connection.query(query,
+        {
+          first_name: answer.first_name,
+          last_name: answer.last_name,
+          rolesID: answer.rolesId
+        },
+        function (err, res) {
+          if (err) throw err;
+          runSearch();
+        });
+    });
+}
+
+function addDep() {
+
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "depName",
+        message: "What is the new department's name?"
+      }
+    ])
+    .then(function (answer) {
+      var query = `INSERT INTO department SET ?`
+      connection.query(query,
+        {
+          depName: answer.depName
+        },
+        function (err, res) {
+          if (err) throw err;
+          runSearch();
+        });
+    });
+}
+
+function addRol() {
+
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "first_name",
+        message: "What is the employee's first name?"
+      },
+      {
+        type: "input",
+        name: "last_name",
+        message: "What is the employee's last name?"
+      },
+      {
+        type: "list",
+        name: "rolesID",
+        message: "What is the employee's role?",
+        choices: [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ])
+    .then(function (answer) {
+      var query = `INSERT INTO employee SET ?`
+      connection.query(query,
+        {
+          first_name: answer.first_name,
+          last_name: answer.last_name,
+          rolesID: answer.rolesId
+        },
+        function (err, res) {
+          if (err) throw err;
+          runSearch();
+        });
+    });
 }
