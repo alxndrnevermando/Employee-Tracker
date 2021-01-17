@@ -219,3 +219,33 @@ function addRol() {
     });
 }
 
+function updateRole() {
+  connection.query("SELECT first_name, last_name, employeeID FROM employee",
+    function (err, res) {
+      let employees = res.map(employee => ({ name: employee.first_name + " " + employee.last_name, value: employee.employeeID }))
+
+      inquirer
+        .prompt([
+          {
+            type: "list",
+            name: "employeeName",
+            message: "Which employee's role would you like to update?",
+            choices: employees
+          },
+          {
+            type: "input",
+            name: "role",
+            message: "What is your new role?"
+          }
+        ])
+        .then(function (res) {
+          connection.query(`UPDATE employees SET rolesID = ${res.role} WHERE employeeID = ${res.employeeName}`,
+            function (err, res) {
+              console.table(res);
+              runSearch();
+            }
+          );
+        })
+    }
+  )
+}
