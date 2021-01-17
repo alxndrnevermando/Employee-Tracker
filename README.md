@@ -14,7 +14,7 @@
  Employee Tracker Command Line application that lets users see a list of employees, roles, and departments. Additionally allows for data to be added for each table and also allows for updating of specific role on one employee value. UPDATE ROLE NOT CURRENTLY FUNCTIONING!!
 
   ## Installation
-  You will need to install the following repository in order to use: 
+  You will need to install the following repository in order to use: https://github.com/alxndrnevermando/Employee-Tracker.git
 
   ## Usage
   First type npm install  into your terminal. Then run node server.js to begin.
