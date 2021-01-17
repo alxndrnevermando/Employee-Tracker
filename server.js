@@ -183,18 +183,18 @@ function addRol() {
     .prompt([
       {
         type: "input",
-        name: "first_name",
-        message: "What is the employee's first name?"
+        name: "title",
+        message: "What is the new title called?"
       },
       {
         type: "input",
-        name: "last_name",
-        message: "What is the employee's last name?"
+        name: "salary",
+        message: "What is the salary for this new position?"
       },
       {
         type: "list",
-        name: "rolesID",
-        message: "What is the employee's role?",
+        name: "departmentID",
+        message: "Which department does this position belong to?",
         choices: [
           1,
           2,
@@ -205,12 +205,12 @@ function addRol() {
       }
     ])
     .then(function (answer) {
-      var query = `INSERT INTO employee SET ?`
+      var query = `INSERT INTO roles SET ?`
       connection.query(query,
         {
-          first_name: answer.first_name,
-          last_name: answer.last_name,
-          rolesID: answer.rolesId
+          title: answer.title,
+          salary: answer.salary,
+          departmentID: answer.departmentID
         },
         function (err, res) {
           if (err) throw err;
@@ -218,3 +218,4 @@ function addRol() {
         });
     });
 }
+
